@@ -90,3 +90,22 @@
 - 图片模型生成的概念图是否被错误当作数据图或可编辑矢量。
 
 通过条件：fallback 工件能被当前 deck 消费，可追溯，且没有悄悄替换原有视觉/叙事系统。
+
+## Gate I: Evidence, rubric and VisualSpec
+
+- every key slide has a claim;
+- claim maps to evidence registry;
+- data chart has real source data;
+- conceptual visual is labelled conceptual;
+- research competition has rubric mapping or an explicit missing-rules state;
+- VisualSpec has purpose, labels/units, output format and editability.
+
+## Gate J: PDF delivery QA
+
+- authoring and delivery formats are explicit;
+- PDF opens;
+- page count, size and order are correct;
+- no blank, clipped, overlapped or overflowing pages;
+- text/images/charts are readable;
+- source and PDF are in sync;
+- unavailable checks are `not_checked`, never pass.

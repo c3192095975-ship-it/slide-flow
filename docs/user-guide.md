@@ -118,6 +118,28 @@ message -> visual question -> SVG/real data -> inspect -> import PPT
 
 `paper-framework-figure-studio-pro`、`Skill-Research-Figure`、`happy-figure-skill` 等许可证不明的仓库只作为参考，不复制代码。
 
+## 5.5 v1.3 科研竞赛、证据与 PDF QA
+
+科研竞赛使用 `research_competition` profile。优先读取用户提供的官方规则；没有规则时只使用通用检查，不能声称符合官方标准。
+
+完整任务应保留：
+
+```text
+slide-plan.json
+evidence-registry.json
+visual-specs.json
+rubric-map.yaml
+```
+
+关键检查：
+
+```bash
+python3 scripts/check_slide_plan.py --plan slide-plan.json --evidence evidence-registry.json
+python3 scripts/check_pdf.py --pdf final.pdf
+```
+
+`authoring_format` 和 `delivery_format` 必须分开。PPTX 生成成功不等于 PDF 交付通过。
+
 ## 6. 质量门
 
 - A：brief 和受众；

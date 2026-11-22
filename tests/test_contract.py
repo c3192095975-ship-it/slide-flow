@@ -38,6 +38,22 @@ class SlideFlowContractTests(unittest.TestCase):
         for field in ("output_mode", "deck_profile", "quality_tier", "style_contract", "render"):
             self.assertIn(field, text)
 
+    def test_v13_modules(self) -> None:
+        for name in (
+            "research-competition-profile.md",
+            "scientific-visual-intelligence.md",
+            "evidence-registry.md",
+            "pdf-submission-qa.md",
+            "design-reference-library.md",
+            "benchmark-and-judge.md",
+            "capability-verification.md",
+        ):
+            self.assertTrue((ROOT / "references" / name).is_file(), name)
+        self.assertTrue((ROOT / "scripts" / "check_slide_plan.py").is_file())
+        self.assertTrue((ROOT / "scripts" / "check_pdf.py").is_file())
+        self.assertIn("research_competition", (ROOT / "references" / "deck-profiles.md").read_text(encoding="utf-8"))
+        self.assertIn("Gate J", (ROOT / "references" / "quality-gates.md").read_text(encoding="utf-8"))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.3.0
+
+- Added Research Competition profile and non-official rubric mapping.
+- Added Scientific Visual Intelligence and VisualSpec.
+- Added Evidence Registry and slide/claim/evidence/visual mapping.
+- Added authoring_format / delivery_format separation and PDF Submission QA.
+- Added Design Reference Library metadata and copyright rules.
+- Added capability verification levels and benchmark/judge boundaries.
+- Added `check_slide_plan.py` and `check_pdf.py`.
+- Added research competition examples and QA fixtures.
+- Preserved existing v1.2 output modes, profiles, visual assets and fallback.
+
 ## 1.2.0
 
 - Added visual_asset capability for frameworks, mechanisms, TOC, and vector icons.

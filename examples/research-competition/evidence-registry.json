@@ -1,0 +1,34 @@
+{
+  "evidence": [
+    {
+      "evidence_id": "E01",
+      "claim": "The project proposes priority-aware duty cycling.",
+      "source_type": "project_record",
+      "source_name": "Synthetic project brief",
+      "source_location": "project-brief.md",
+      "status": "user_provided",
+      "related_slide_ids": ["S01", "S02"],
+      "related_visual_ids": ["V01", "V02"]
+    },
+    {
+      "evidence_id": "E02",
+      "claim": "The method combines duty cycling and event priority.",
+      "source_type": "project_record",
+      "source_name": "Synthetic method note",
+      "source_location": "project-brief.md#method",
+      "status": "user_provided",
+      "related_slide_ids": ["S02"],
+      "related_visual_ids": ["V02"]
+    },
+    {
+      "evidence_id": "E03",
+      "claim": "Coverage and energy must be evaluated together.",
+      "source_type": "user_data",
+      "source_name": "Synthetic result table",
+      "source_location": "user_provided_results.csv",
+      "status": "user_provided",
+      "related_slide_ids": ["S03"],
+      "related_visual_ids": ["V03"]
+    }
+  ]
+}

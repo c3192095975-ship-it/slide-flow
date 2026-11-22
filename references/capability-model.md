@@ -100,3 +100,15 @@
 - 生成图片只能作为概念/装饰或草图，不能冒充真实数据；
 - SVG 导入 PPT 后验证“转换为形状”和可编辑性；
 - 记录 asset source、license、format、editability 和 slide usage。
+
+## 10. Verification status
+
+Capability discovery only establishes declared availability. Before high-stakes selection, prefer a smoke test:
+
+- command/help runs;
+- minimal input produces expected output;
+- missing dependency fails visibly;
+- generated file opens;
+- output can be consumed by the next stage.
+
+Use `declared`, `smoke_tested` or `verified` rather than treating all installed skills as equally operational.

@@ -1,0 +1,34 @@
+{
+  "visuals": [
+    {
+      "visual_id": "V01",
+      "slide_id": "S01",
+      "visual_type": "concept",
+      "purpose": "Show the monitoring problem and idle-listening cost.",
+      "source_data_or_asset": "conceptual diagram from project brief",
+      "output_format": "svg",
+      "editability_requirement": "editable_in_ppt",
+      "caption_or_source_note": "Conceptual diagram; not measured data."
+    },
+    {
+      "visual_id": "V02",
+      "slide_id": "S02",
+      "visual_type": "mechanism",
+      "purpose": "Explain the feedback loop between duty cycling and event priority.",
+      "source_data_or_asset": "conceptual method diagram",
+      "output_format": "svg",
+      "editability_requirement": "editable_in_ppt",
+      "caption_or_source_note": "Conceptual diagram based on user-provided method."
+    },
+    {
+      "visual_id": "V03",
+      "slide_id": "S03",
+      "visual_type": "data_chart",
+      "purpose": "Compare coverage and energy using real results.",
+      "source_data_or_asset": "user_provided_results.csv",
+      "output_format": "native_chart_or_svg",
+      "editability_requirement": "editable_in_ppt",
+      "caption_or_source_note": "Values must be inserted from the supplied result table."
+    }
+  ]
+}

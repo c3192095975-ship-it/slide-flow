@@ -53,6 +53,27 @@ orchestration
 
 Gate A-G 覆盖受众、故事、内容、视觉、版式、文件、可编辑性和人工确认。
 
+## 6.3 v1.3 intelligence modules
+
+```text
+Task Intelligence
+-> Story + Evidence Registry
+-> Scientific Visual Intelligence
+-> Design Reference Library
+-> Production
+-> PDF / render QA
+-> Delivery
+```
+
+新增模块：
+
+- Research Competition Profile；
+- SlidePlan / VisualSpec / EvidenceRecord；
+- PDF delivery QA；
+- Design Reference Library；
+- Capability verification；
+- Benchmark and judge simulation.
+
 ## 6.2 Fallback layer
 
 ```text

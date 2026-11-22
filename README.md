@@ -1,8 +1,20 @@
 # Slide Flow
 
-当前版本：`1.2.0`
+当前版本：`1.3.0`
 
 Slide Flow 是一个独立的 PPT/演示文稿编排 skill。它不替代具体 PPT 制作工具，而是先选择输出形态，再按故事线、内容、视觉、生产、渲染、QA 和交付阶段选择唯一主技能，避免多个 PPT skill 互相抢任务。
+
+## v1.3 更新重点
+
+- 新增 Research Competition Profile 和 rubric-to-slide 映射。
+- 新增 Scientific Visual Intelligence：按页面论点选择视觉类型，不强制每页有图。
+- 新增 Evidence Registry：claim、来源、数据、页面和视觉可追踪。
+- 新增 PDF Submission QA：authoring/delivery 分离，PDF 结构、页面和渲染检查。
+- 新增 Design Reference Library 元数据与版权边界。
+- 新增 capability verification：声明能力、smoke test 和 verified 区分。
+- 新增 benchmark、human rubric 和 judge simulation 边界。
+- 新增 `check_slide_plan.py` 和 `check_pdf.py`。
+- 增加科研竞赛示例。
 
 ## v1.2 更新重点
 
@@ -87,6 +99,31 @@ python3 scripts/discover_slide_skills.py
 - accessibility
 - delivery
 
+## Research Competition
+
+科研竞赛使用 `research_competition` profile：
+
+- 问题与重要性；
+- 现有方法与缺口；
+- 创新点；
+- 方法/技术路线；
+- 实验设计与验证；
+- 关键结果；
+- 对比与可靠性；
+- 应用价值；
+- 局限与下一步。
+
+如果用户提供官方规则，必须做 rubric-to-slide mapping；没有官方规则时只能使用通用检查并标注“非官方”。
+
+## Evidence and PDF QA
+
+- `slide-plan.json`：每页 takeaway、claim、evidence_ids 和 VisualSpec。
+- `evidence-registry.json`：来源、数据、方法、限制和页面映射。
+- `authoring_format` 与 `delivery_format` 分开。
+- PPTX 不是 PDF 交付合格证明。
+- `check_pdf.py` 检查结构、页数、页面尺寸、渲染和可检查的工具项。
+- 工具不可用的检查标记 `not_checked`。
+
 ## 科研 fallback
 
 科研 skill 只作为具体失败门的补强，不接管整个 deck：
@@ -152,6 +189,10 @@ python3 scripts/discover_slide_skills.py
 - [能力模型](references/capability-model.md)
 - [质量门](references/quality-gates.md)
 - [GitHub PPT skills](references/github-ppt-skills.md)
+
+## 示例
+
+见 `examples/research-competition/`。
 
 ## 测试
 

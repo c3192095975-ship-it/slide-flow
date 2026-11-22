@@ -1,0 +1,22 @@
+# Synthetic general checklist. Not an official GSC rubric.
+status: non_official
+dimensions:
+  - id: problem_value
+    label: Problem significance
+    weight: null
+  - id: innovation
+    label: Innovation and differentiation
+    weight: null
+  - id: method
+    label: Technical approach
+    weight: null
+  - id: evidence
+    label: Experimental validation
+    weight: null
+  - id: impact
+    label: Application value
+    weight: null
+  - id: limitations
+    label: Limitations and next steps
+    weight: null
+source_note: "Generic internal checklist; replace with official rules if supplied."

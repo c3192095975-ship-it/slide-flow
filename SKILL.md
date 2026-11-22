@@ -1,12 +1,12 @@
 ---
 name: slide-flow
-description: Orchestrate presentation and slide-deck production without conflicting PPT skills. Use for creating, editing, converting, reviewing, or exporting decks, slides, PPT/PPTX, PowerPoint, Google Slides, HTML slides, image-based slides, or presentation narratives. Triage first; select output mode, deck profile, quality tier, and source mode; then build story, content, visual direction, production, render QA, accessibility, and delivery with one primary skill per stage. Prefer the official `Presentations` skill for Spaces/PowerPoint/Google Slides when available, `template-creator` for reusable templates, and `documents`/`pdf` only as verification or delivery support. Support scoped research-skill fallback, vector visual assets, and paper-to-deck workflows. Do not use for ordinary document writing or isolated image generation without a slide/deck context.
+description: Orchestrate presentation and slide-deck production without conflicting PPT skills. Use for creating, editing, converting, reviewing, or exporting decks, slides, PPT/PPTX, PowerPoint, Google Slides, HTML slides, image-based slides, or presentation narratives. Triage first; select output mode, deck profile, quality tier, and source mode; then build story, content, visual direction, production, render QA, accessibility, and delivery with one primary skill per stage. Prefer the official `Presentations` skill for Spaces/PowerPoint/Google Slides when available, `template-creator` for reusable templates, and `documents`/`pdf` only as verification or delivery support. Support scoped research-skill fallback, research-competition profiles, scientific visual intelligence, evidence registries, PDF submission QA, design references, and benchmark-ready delivery. Do not use for ordinary document writing or isolated image generation without a slide/deck context.
 metadata:
-  version: "1.2.0"
+  version: "1.3.0"
   short-description: Orchestrate PPT skills by output mode and stage
 ---
 
-# Slide Flow v1.2
+# Slide Flow v1.3
 
 本 skill 是演示文稿任务的唯一编排入口。它不替代具体 PPT 制作 skill，而负责决定：输出形态、演示类型、质量标准、当前阶段、唯一主技能和渲染验收。
 
@@ -32,6 +32,13 @@ metadata:
 18. 真实数据图优先由科研绘图/数据分析能力生成；概念图、框架图和机制图优先使用可编辑 SVG。
 19. SVG 导入 PowerPoint 后，只有实际完成“转换为形状”并验证对象可编辑，才能称为可编辑 PPTX。
 20. `academic-ppt-master` 可作为论文转学术 deck 的替代主生产器，但不能与 `Presentations`、`slide-maker` 或 `ppt-master` 同时主控。
+21. 每个重要页面必须有 takeaway/claim，且重要 claim 必须能映射到 evidence registry。
+22. 每个科研视觉必须有 VisualSpec；真实数据图只能使用真实数据，概念图必须标注为示意。
+23. `authoring_format` 与 `delivery_format` 分离；PPTX 生成成功不等于 PDF 交付合格。
+24. 比赛规则只能来自用户提供的官方文件；缺失时使用通用检查并标明“非官方”。
+25. PDF 交付必须检查页数、页面尺寸、渲染、文本/图片完整性和源文件一致性；工具缺失时标记 `not_checked`。
+26. 设计参考只提取结构和表达规律，不复制受版权保护的整页作品。
+27. Benchmark、Judge Simulation 和内部评分只作为辅助，不得冒充官方成绩或评委结论。
 
 以下任务不进入 Slide Flow：普通文档写作、普通图片生成、单个图标或单张配图，没有幻灯片或演示语境的普通视觉任务。
 
@@ -128,6 +135,7 @@ metadata:
 | `product_launch` | 产品发布、市场推广 | 用户价值、差异化、视觉锚点 |
 | `social_deck` | 小红书/社交图文 | 封面钩子、信息节奏、可分享性 |
 | `business_review` | 周报、月报、项目汇报 | 目标、进展、风险、决策请求 |
+| `research_competition` | 科研创新/学生项目竞赛 | 问题、创新、方法、验证、价值、限制、rubric 映射 |
 | `template_deck` | 指定模板/学校/公司格式 | 母版、版式、品牌和格式一致性 |
 
 详细 profile 规则见 `references/deck-profiles.md`。
@@ -168,14 +176,16 @@ metadata:
 ```text
 0 Brief
 -> 1 Story outline
--> 2 Content and evidence
+-> 2 Content and evidence registry
+-> 2.5 Evidence / rubric validation
 -> 3 Visual direction
--> 3.5 Visual asset preparation
+-> 3.5 VisualSpec / visual asset preparation
 -> 4 Exemplar + style contract
 -> 5 Slide production
 -> 6 Render
 -> 7 Visual QA
 -> 8 Editability / accessibility
+-> 8.5 PDF delivery QA
 -> 9 Final delivery
 ```
 
@@ -188,6 +198,39 @@ metadata:
 - 渲染后才做版面、溢出和对齐判断；
 - 可编辑 PPTX 必须回到原生 PPTX 检查，不能用图片替代可编辑性；
 - 最终交前做文件打开、字体、链接和版本检查。
+
+## 7.1 Authoring and delivery formats
+
+每个完整任务必须记录：
+
+```yaml
+authoring_format: editable_pptx | html_deck | image_deck | univer
+delivery_format: pdf | pptx | html | png_zip
+```
+
+规则：
+
+- 可编辑源文件和最终交付物分开验收；
+- PPTX 成功生成不代表 PDF 合格；
+- PDF 必须实际检查页数、页面尺寸、渲染和源文件一致性；
+- 工具不可用时标记 `not_checked`，不能默认通过。
+
+## 7.2 Evidence, rubric and VisualSpec
+
+核心工件：
+
+- `evidence-registry.json`：claim、来源、数据、限制、状态、相关页面/视觉；
+- `slide-plan.json`：每页 title、takeaway、claim、evidence_ids、visual_type、visual_spec_id；
+- `visual-specs.json`：视觉类型、目的、数据源、标签、单位、输出格式和可编辑性；
+- `rubric-map.yaml`：比赛/课程/投稿评分维度到页面的映射，仅使用提供的官方规则。
+
+可使用：
+
+```bash
+python3 scripts/check_slide_plan.py --plan slide-plan.json --evidence evidence-registry.json
+```
+
+科研竞赛、学术汇报和 PDF 交付的具体规范见对应 references。
 
 ## 8.1 Official and plugin skills
 
@@ -339,6 +382,25 @@ fallback 规则：
 
 详细规则见 `references/quality-gates.md`。
 
+### Gate I: Evidence, rubric and VisualSpec
+
+- 重要页面有 takeaway/claim；
+- claim 能映射到 evidence registry；
+- 数据图有真实数据源；
+- 概念图明确标记 conceptual；
+- research competition 有 rubric-to-slide mapping 或明确缺少官方规则；
+- VisualSpec 有 purpose、labels/units、output format 和 editability。
+
+### Gate J: PDF delivery QA
+
+- authoring_format 与 delivery_format 明确；
+- PDF 可打开；
+- 页数、页面尺寸和顺序正确；
+- 无空白页、明显裁切、遮挡或溢出；
+- 字体/文字/图片/图表可读；
+- 源文件与 PDF 一致；
+- 工具缺失时记录 `not_checked`，不能伪报通过。
+
 ## 11. 交接
 
 每阶段至少交接：
@@ -380,5 +442,14 @@ SlideFlow gate：pass / fail / pending
 - `references/quality-gates.md`：Gate A-G。
 - `references/handoff-schemas.md`：项目状态、页面计划、style contract 和 QA 模板。
 - `references/github-ppt-skills.md`：经过核验的 GitHub PPT/Agent Skills 来源和适用边界。
+- `references/research-competition-profile.md`：科研竞赛 Profile 和 rubric 映射。
+- `references/scientific-visual-intelligence.md`：视觉类型、VisualSpec 和科研视觉决策。
+- `references/evidence-registry.md`：证据、claim、数据和页面/视觉映射。
+- `references/pdf-submission-qa.md`：PPTX 到 PDF 的交付检查。
+- `references/design-reference-library.md`：设计参考元数据和版权边界。
+- `references/benchmark-and-judge.md`：基准任务、评分 rubric 和评委模拟边界。
+- `references/capability-verification.md`：声明能力与验证能力的区分。
+- `scripts/check_slide_plan.py`：检查 SlidePlan、证据引用和 VisualSpec。
+- `scripts/check_pdf.py`：检查 PDF 结构、页面和渲染。
 
 只读取当前任务需要的参考文件。

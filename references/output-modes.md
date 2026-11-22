@@ -133,3 +133,14 @@ HTML deck + PDF
 ```
 
 必须分别定义验收标准，不能让一个产物自动代表另一个产物合格。
+
+## Delivery separation
+
+Every full task should record:
+
+```yaml
+authoring_format: editable_pptx | html_deck | image_deck | univer
+delivery_format: pdf | pptx | html | png_zip
+```
+
+A PPTX generation success is not a PDF delivery pass. PDF QA must be performed separately.
