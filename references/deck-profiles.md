@@ -156,3 +156,27 @@ Profile 决定叙事结构，不决定品牌皮肤。
 - 格式验收。
 
 Profile 可以组合，例如 `academic_talk + template_deck`，但当前阶段只能有一个主 profile。
+
+## paper_to_deck
+
+用于论文转学术汇报。
+
+流程：
+
+1. 提取中心贡献、问题、方法、实验、结论和限制；
+2. 生成 story outline；
+3. 保留论文中的公式、图、表、关键结果和 source data；
+4. 设计 academic_talk / thesis_defense / lab_meeting 结构；
+5. 准备科研视觉资产；
+6. 生产、渲染和视觉 QA；
+7. 导出可编辑 PPTX/PDF。
+
+默认候选：
+
+- `academic-ppt-master`
+- `academic-pptx`
+- `nature-paper2ppt`
+- `ppt-master`
+- `Presentations`
+
+不能把论文只压缩成 bullet 摘要；不能丢失关键图表和公式。

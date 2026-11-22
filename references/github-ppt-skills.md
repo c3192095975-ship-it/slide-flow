@@ -2,6 +2,8 @@
 
 Last verified: 2026-11-22.
 
+Additional verified sources:
+
 这些仓库用于扩充 SlideFlow 的能力候选。不是全部建议安装；许可证和运行环境需在使用前确认。
 
 ## High-value references
@@ -44,3 +46,16 @@ These are not GitHub repositories; they are installed runtime/plugin skills and 
 | `pdf` | PDF render/inspect | auxiliary only |
 | `univer-cli` | Univer files/slides | only for `.univer` targets |
 | `visualize` | explanatory visuals | auxiliary visual only |
+
+## Additional research/deck sources
+
+| Repository | License | Use |
+|---|---|---|
+| [M1n-n9/academic-ppt-master](https://github.com/M1n-n9/academic-ppt-master) | MIT | paper to editable academic PPTX; strong academic_talk/thesis_defense candidate |
+| [c-narcissus/paper-framework-figure-studio-pro](https://github.com/c-narcissus/paper-framework-figure-studio-pro) | No detected SPDX | framework/method overview figures; reference only |
+| [chingswy/Skill-Research-Figure](https://github.com/chingswy/Skill-Research-Figure) | No detected SPDX | TikZ/hand-drawn SVG figures; reference only |
+| [BAIKEMARK/happy-figure-skill](https://github.com/BAIKEMARK/happy-figure-skill) | NOASSERTION | structured scientific figure prompts; reference only |
+| [lgwrightlab/schematic-figure](https://github.com/lgwrightlab/schematic-figure) | MIT | publication-quality vector schematics |
+| [redreamality/Paper-Comicizer](https://github.com/redreamality/Paper-Comicizer) | No detected SPDX | paper-to-comic communication; social/科普 branch only |
+
+Research figure repositories should enter `visual_asset`, never `slide_authoring`, unless they actually produce complete decks.

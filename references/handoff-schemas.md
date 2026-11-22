@@ -11,6 +11,11 @@ source_mode: topic | document | paper | template | url | existing_pptx | screens
 phase: brief | story | content | visual | exemplar | production | render | visual_qa | accessibility | delivery
 primary_skill:
 auxiliary_skill:
+visual_asset_owner:
+fallback_owner:
+fallback_scope:
+fallback_trigger_gate:
+fallback_return_to:
 story_outline:
 style_contract:
 template_path:
@@ -74,4 +79,23 @@ SlideFlow handoff
 - Open issues:
 - Next stage:
 - Next primary skill:
+```
+
+## Visual asset manifest
+
+```csv
+asset_id,slide_id,asset_type,source_path,generator,license,format,editable,source_data,notes
+```
+
+## Fallback log
+
+```yaml
+trigger_gate:
+primary_owner:
+fallback_owner:
+scope:
+return_to:
+invalidated_artifacts: []
+checks_to_rerun: []
+result: pass | fail | pending
 ```

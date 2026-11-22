@@ -77,3 +77,16 @@
 4. 默认最多两轮。
 5. 第三轮需要新素材、模板变化、用户明确要求或新风险。
 6. 不能靠换一个 PPT skill 绕过失败门。
+
+## Gate H: Research fallback and visual asset fidelity
+
+检查：
+
+- 科研 fallback 是否有明确 trigger、scope、return_to、失效工件和重跑门；
+- 是否只补强一个缺口，而不是重新生产整套 deck；
+- 科研图是否有 source/data/prompt、许可证和矢量/栅格记录；
+- 真实数据图是否来自真实数据；
+- SVG 导入 PPT 后是否实际验证了文字和对象可编辑；
+- 图片模型生成的概念图是否被错误当作数据图或可编辑矢量。
+
+通过条件：fallback 工件能被当前 deck 消费，可追溯，且没有悄悄替换原有视觉/叙事系统。

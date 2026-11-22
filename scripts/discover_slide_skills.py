@@ -21,6 +21,7 @@ CAPABILITY_KEYWORDS: dict[str, list[str]] = {
     "story_outline": ["story", "outline", "narrative", "deck plan", "storyboard", "大纲", "故事线", "叙事", "页面计划"],
     "content_evidence": ["research", "evidence", "citation", "data", "fact", "来源", "证据", "数据", "引用"],
     "visual_direction": ["visual", "design system", "brand", "palette", "typography", "color", "视觉", "配色", "字体", "品牌"],
+    "visual_asset": ["framework figure", "academic figure", "scientific figure", "figure", "schematic", "mechanism", "vector", "tikz", "svg", "method overview", "toc", "框架图", "机制图", "示意图", "矢量图", "科研绘图"],
     "template_match": ["template", "master", "brand template", "theme", "母版", "模板", "主题"],
     "image_generation": ["image generation", "gpt-image", "imagegen", "image deck", "图片型", "出图", "生成图片"],
     "slide_authoring": ["slide", "deck", "presentation", "powerpoint", "pptx generation", "幻灯片", "演示文稿", "ppt制作"],
@@ -37,8 +38,8 @@ PPT_CORE_TERMS = [
     "keynote", "html presentation", "html slides", "web deck", "image deck",
     "幻灯片", "演示文稿", "汇报材料", "答辩", "ppt制作", "网页ppt",
 ]
-PPT_AUX_NAMES = {"documents", "pdf", "template-creator", "visualize"}
-PPT_EXCLUDED_NAMES = {"research-flow", "academic-figure-skill"}
+PPT_AUX_NAMES = {"documents", "pdf", "template-creator", "visualize", "academic-figure-skill", "scientific-visualization", "nature-figure", "figure-library"}
+PPT_EXCLUDED_NAMES = {"research-flow"}
 
 
 @dataclass
@@ -203,7 +204,7 @@ def record(d: Path, root: Root, kind: str) -> Skill:
     relevance=ppt_relevance(name,desc)
     caps=detect_capabilities(name,desc,extra)
     if relevance=="ppt_auxiliary":
-        caps=[c for c in caps if c["name"] in {"delivery","render_qa","accessibility","template_match","image_generation"}]
+        caps=[c for c in caps if c["name"] in {"delivery","render_qa","accessibility","template_match","image_generation","visual_asset"}]
     return Skill(
         name=name, description=desc, path=str(d.resolve()), root=root.path, root_label=root.label,
         root_priority=root.priority, format=kind, implicit_invocation=implicit,

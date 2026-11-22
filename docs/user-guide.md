@@ -92,6 +92,32 @@ hybrid_delivery
 
 只有前两类进入 SlideFlow 候选。
 
+## 5.3 科研 fallback
+
+当 PPT skill 的产物在某个质量门失败时，不要整套重做。按失败原因选择一个科研 skill 补强：
+
+| 失败类型 | fallback |
+|---|---|
+| 故事线 | `research-flow` LIGHT / `scientific-brainstorming` |
+| 证据 | `nature-ref-verifier` / `peer-review` |
+| 数据/真实图表 | `scientific-toolkit-skill` / `scipilot-figure-skill` |
+| 框架图/机制图 | `academic-figure-skill` / `scientific-visualization` / `nature-figure` |
+| 文案 | `scientific-writing` / `nature-polishing` |
+| 论文转学术 deck | `academic-ppt-master` |
+
+补强后回到 SlideFlow，只重跑受影响的 Gate。
+
+## 5.4 Visual asset
+
+推荐流程：
+
+```text
+message -> visual question -> SVG/real data -> inspect -> import PPT
+-> convert to shapes (if available) -> verify editability -> place on slide
+```
+
+`paper-framework-figure-studio-pro`、`Skill-Research-Figure`、`happy-figure-skill` 等许可证不明的仓库只作为参考，不复制代码。
+
 ## 6. 质量门
 
 - A：brief 和受众；

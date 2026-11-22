@@ -7,6 +7,7 @@
 | `story_outline` | 故事线、大纲、章节、每页 message | outline, story, narrative, deck plan | `ppt-image-first`、`academic-pptx`、`slide-maker` |
 | `content_evidence` | 资料、数据、引用、事实核验 | research, data, citation, evidence | `agent-reach`、`nature-paper2ppt`、`academic-pptx` |
 | `visual_direction` | 视觉风格、色板、字体、网格 | visual, design system, brand, art direction | `slide-design`、`kami`、`jinba-consulting-pptx` |
+| `visual_asset` | 科研框架图、机制图、TOC、矢量图标 | framework figure, schematic, vector, TikZ, SVG, mechanism | `academic-figure-skill`、`scientific-visualization`、`nature-figure`、`schematic-figure` |
 | `template_match` | 模板、母版和版式约束 | template, master, brand template | `template-creator`、`thesis-defense-pptx`、`image-to-editable-ppt` |
 | `image_generation` | 图片型页面和配图生成 | image generation, gpt-image, image deck | `gpt-image2-ppt`、`baoyu-slide-deck`、Gorden 系列 |
 | `slide_authoring` | 页面设计和完整 deck 生产 | deck, slides, pptx generation | `Presentations`、`slide-maker`、`ppt-master`、`ppt-agent-skill` |
@@ -78,3 +79,24 @@
 - `documents` / `pdf`：渲染、导出、格式验证辅助。
 - `univer-cli`：只在 `.univer` / Univer Slides 目标下使用。
 - `visualize`：解释性视觉辅助，不自动担任 PPT 版式主控。
+
+## 8. Research fallback
+
+科研 skill 只能补强具体 PPT 失败门：
+
+- Gate B -> `research-flow` LIGHT / `scientific-brainstorming`；
+- Gate C -> `nature-ref-verifier` / `peer-review` / `scientific-toolkit-skill`；
+- Gate D visual asset -> `academic-figure-skill` / `scientific-visualization` / `nature-figure`；
+- Gate E -> `scientific-writing` / `nature-polishing`；
+- Gate F -> `hands-on-deck` / `pptx` / `image-to-editable-ppt`；
+- 论文整体转学术 deck -> `academic-ppt-master` 作为替代主生产器。
+
+科研 fallback 必须返回 SlideFlow，不能另起一套 deck。
+
+## 9. Visual asset policy
+
+- 真实数据图必须来自真实数据与 data/source；
+- 机制图、框架图和流程图优先 SVG；
+- 生成图片只能作为概念/装饰或草图，不能冒充真实数据；
+- SVG 导入 PPT 后验证“转换为形状”和可编辑性；
+- 记录 asset source、license、format、editability 和 slide usage。

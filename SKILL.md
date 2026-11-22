@@ -1,12 +1,12 @@
 ---
 name: slide-flow
-description: Orchestrate presentation and slide-deck production without conflicting PPT skills. Use for creating, editing, converting, reviewing, or exporting decks, slides, PPT/PPTX, PowerPoint, Google Slides, HTML slides, image-based slides, or presentation narratives. Triage first; select output mode, deck profile, quality tier, and source mode; then build story, content, visual direction, production, render QA, accessibility, and delivery with one primary skill per stage. Prefer the official `Presentations` skill for Spaces/PowerPoint/Google Slides when available, `template-creator` for reusable templates, and `documents`/`pdf` only as verification or delivery support. Do not use for ordinary document writing or isolated image generation without a slide/deck context.
+description: Orchestrate presentation and slide-deck production without conflicting PPT skills. Use for creating, editing, converting, reviewing, or exporting decks, slides, PPT/PPTX, PowerPoint, Google Slides, HTML slides, image-based slides, or presentation narratives. Triage first; select output mode, deck profile, quality tier, and source mode; then build story, content, visual direction, production, render QA, accessibility, and delivery with one primary skill per stage. Prefer the official `Presentations` skill for Spaces/PowerPoint/Google Slides when available, `template-creator` for reusable templates, and `documents`/`pdf` only as verification or delivery support. Support scoped research-skill fallback, vector visual assets, and paper-to-deck workflows. Do not use for ordinary document writing or isolated image generation without a slide/deck context.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
   short-description: Orchestrate PPT skills by output mode and stage
 ---
 
-# Slide Flow v1.1
+# Slide Flow v1.2
 
 本 skill 是演示文稿任务的唯一编排入口。它不替代具体 PPT 制作 skill，而负责决定：输出形态、演示类型、质量标准、当前阶段、唯一主技能和渲染验收。
 
@@ -27,6 +27,11 @@ metadata:
 13. 原生演示文件优先考虑官方 `Presentations` skill；从零生成原生 PPTX 时再考虑 `slide-maker`、`ppt-master` 或 `pptx`。
 14. `template-creator` 只负责模板能力，不自动成为 deck 主生产器；`documents`/`pdf` 只做渲染、导出或验证辅助。
 15. `univer-cli` 只在目标是 `.univer` / Univer Slides 时启用，不能用来冒充 PowerPoint 原生 PPTX。
+16. 科研 skill 只能作为具体失败门的补强，不得直接接管整个 deck；补强完成后必须回到 SlideFlow。
+17. 科研 fallback 必须使用受限范围（例如 research-flow LIGHT），并记录 trigger、scope、return_to、失效工件和重跑检查。
+18. 真实数据图优先由科研绘图/数据分析能力生成；概念图、框架图和机制图优先使用可编辑 SVG。
+19. SVG 导入 PowerPoint 后，只有实际完成“转换为形状”并验证对象可编辑，才能称为可编辑 PPTX。
+20. `academic-ppt-master` 可作为论文转学术 deck 的替代主生产器，但不能与 `Presentations`、`slide-maker` 或 `ppt-master` 同时主控。
 
 以下任务不进入 Slide Flow：普通文档写作、普通图片生成、单个图标或单张配图，没有幻灯片或演示语境的普通视觉任务。
 
@@ -101,7 +106,7 @@ metadata:
 
 | 输出模式 | 适用 | 默认候选 |
 |---|---|---|
-| `editable_pptx` | 需要后续编辑、公司/学校汇报 | `Presentations`（Spaces/PPTX/Google Slides）、`slide-maker`、`pptx`、`hands-on-deck`、`ppt-master` |
+| `editable_pptx` | 需要后续编辑、公司/学校汇报 | `Presentations`、`academic-ppt-master`、`slide-maker`、`pptx`、`hands-on-deck`、`ppt-master` |
 | `image_deck` | 高视觉冲击、图片型 PPT、社交传播 | `gpt-image2-ppt`、`baoyu-slide-deck`、Gorden 系列 |
 | `html_deck` | 网页演示、发布会、分享会 | `html-ppt`、`guizang-ppt-skill`、`dashi-ppt` |
 | `template_edit` | 已有大学/公司模板 | `template-creator`、`thesis-defense-pptx`、`image-to-editable-ppt`、`html-to-editable-pptx` |
@@ -145,6 +150,8 @@ metadata:
 | `story_outline` | 故事线、大纲、章节和每页 message | `ppt-image-first`、`academic-pptx`、`slide-maker` |
 | `content_evidence` | 资料、数据、引用和事实核验 | `agent-reach`、`nature-paper2ppt`、`academic-pptx` |
 | `visual_direction` | 视觉概念、色板、字体、版式系统 | `slide-design`、`kami`、`jinba-consulting-pptx` |
+| `visual_asset` | 论文框架图、机制图、流程图、TOC、矢量图标 | `academic-figure-skill`、`scientific-visualization`、`nature-figure`、`schematic-figure`、科研绘图 fallback |
+
 | `template_match` | 模板识别、母版和版式约束 | `template-creator`、`thesis-defense-pptx`、`image-to-editable-ppt` |
 | `image_generation` | 图片型页面或配图生成 | `gpt-image2-ppt`、`baoyu-slide-deck`、Gorden 系列 |
 | `slide_authoring` | 页面设计、布局和完整 deck 生产 | `Presentations`、`slide-maker`、`ppt-master`、`ppt-agent-skill` |
@@ -163,6 +170,7 @@ metadata:
 -> 1 Story outline
 -> 2 Content and evidence
 -> 3 Visual direction
+-> 3.5 Visual asset preparation
 -> 4 Exemplar + style contract
 -> 5 Slide production
 -> 6 Render
@@ -193,6 +201,64 @@ metadata:
 6. 目标是 `.univer` / Univer Slides：`univer-cli`，不得冒充 PowerPoint 原生文件。
 
 插件的调用策略、依赖和可用性由 SlideFlow 的能力发现预检；不能因为已安装就自动变成主技能。
+
+## 8.2 Research fallback
+
+科研 skill 只用于补强具体缺口：
+
+| PPT 失败门 | 允许的 fallback | 返回位置 |
+|---|---|---|
+| Gate B 故事线浅 | `research-flow` LIGHT / `scientific-brainstorming` | story outline |
+| Gate C 证据不足 | `nature-ref-verifier` / `peer-review` | content/evidence |
+| Gate C 数据/图表不可靠 | `scientific-toolkit-skill` / `scipilot-figure-skill` | visual asset / content |
+| Gate D 视觉资产不足 | `academic-figure-skill` / `scientific-visualization` / `nature-figure` | visual asset |
+| Gate E 文案空泛 | `scientific-writing` / `nature-polishing` | draft |
+| Gate F 可编辑性失败 | `hands-on-deck` / `pptx` / `image-to-editable-ppt` | production |
+| 学术 deck 核心转换失败 | `academic-ppt-master`（仅在未启用其他主生产器时） | production |
+
+fallback 规则：
+
+- 只补一个缺口，不接管整套 deck；
+- `research-flow` 只能以 LIGHT 或受限子任务使用；
+- 返回 SlideFlow 后重新执行受影响门；
+- 不得同时让 PPT 主生产器和科研总流程各自生产一套页面；
+- 许可证不明的科研图仓库只参考，不复制代码。
+
+## 8.3 Paper-to-deck method
+
+论文转 deck 使用固定路径：
+
+```text
+论文
+-> 中心贡献/问题/方法/实验/结论/限制
+-> story outline
+-> 保留的公式、图表、关键结果
+-> visual direction
+-> visual asset preparation
+-> exemplar + style contract
+-> slide production
+-> render
+-> visual QA
+-> editability/accessibility
+-> delivery
+```
+
+适用：
+
+- `academic_talk`
+- `thesis_defense`
+- `grant_briefing`
+- `lab_meeting`
+
+默认候选：
+
+- `academic-ppt-master`
+- `academic-pptx`
+- `nature-paper2ppt`
+- `ppt-master`
+- `Presentations`
+
+优先保留论文原图、表格、公式和 source data；不能把论文仅压缩成 bullet 摘要。
 
 ## 9. 冲突裁决
 
@@ -257,6 +323,14 @@ metadata:
 - 文件命名和版本清楚。
 
 ### Gate G: Human approval
+### Gate H: Research fallback and visual asset fidelity
+
+- 科研 fallback 必须有 trigger、scope、return_to、失效工件和重跑检查；
+- 科研图、SVG 和生成资产必须有来源、数据/提示词记录、许可证、矢量/栅格类型和可编辑性状态；
+- 真实数据图不能用图片模型伪造；
+- SVG 转 PPT 后必须实际验证文字和对象可编辑；
+- 不允许科研 fallback 另起一套 deck 叙事。
+
 
 - 演讲者读完整套 deck；
 - 确认事实、品牌、模板、姓名和日期；

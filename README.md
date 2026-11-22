@@ -1,8 +1,18 @@
 # Slide Flow
 
-当前版本：`1.1.0`
+当前版本：`1.2.0`
 
 Slide Flow 是一个独立的 PPT/演示文稿编排 skill。它不替代具体 PPT 制作工具，而是先选择输出形态，再按故事线、内容、视觉、生产、渲染、QA 和交付阶段选择唯一主技能，避免多个 PPT skill 互相抢任务。
+
+## v1.2 更新重点
+
+- 新增 `visual_asset` 能力：论文框架图、机制图、流程图、TOC 和矢量图标。
+- 新增科研 skill fallback：PPT 结果不满意时，按失败门只补强一个缺口，然后回到 SlideFlow。
+- 新增 `paper_to_deck` 路径：论文 → story → 公式/图表/关键结果 → visual assets → editable PPTX。
+- 新增 SVG-first 流程：概念图和机制图优先 SVG，导入 PPT 后验证“转换为形状”和可编辑性。
+- 新增 Gate H：科研 fallback 和视觉资产保真。
+- 扩展 GitHub 调研：academic-ppt-master、paper-framework-figure-studio-pro、Skill-Research-Figure、happy-figure-skill、schematic-figure、Paper-Comicizer。
+- 保留 `Presentations`、`template-creator`、`documents`、`pdf`、`univer-cli` 的 v1.1 路由。
 
 ## v1.1 更新重点
 
@@ -76,6 +86,28 @@ python3 scripts/discover_slide_skills.py
 - render_qa
 - accessibility
 - delivery
+
+## 科研 fallback
+
+科研 skill 只作为具体失败门的补强，不接管整个 deck：
+
+- Gate B 故事线：`research-flow` LIGHT / `scientific-brainstorming`
+- Gate C 证据：`nature-ref-verifier` / `peer-review`
+- Gate C 数据/图表：`scientific-toolkit-skill` / `scipilot-figure-skill`
+- Gate D 视觉资产：`academic-figure-skill` / `scientific-visualization` / `nature-figure`
+- Gate E 文案：`scientific-writing` / `nature-polishing`
+- Gate F 可编辑性：`hands-on-deck` / `pptx` / `image-to-editable-ppt`
+- 论文整体转学术 deck：`academic-ppt-master`
+
+补强后必须回到 SlideFlow，重新执行受影响门。
+
+## 视觉资产与 SVG
+
+- 真实数据图必须来自真实数据；
+- 机制图、框架图和流程图优先 SVG；
+- SVG 导入 PPT 后验证“转换为形状”和文字/对象可编辑；
+- 生成图片只能作为概念或装饰，不能冒充数据图；
+- 每个资产记录来源、许可证、vector/raster 和 editability。
 
 ## 官方/插件 PPT 能力
 

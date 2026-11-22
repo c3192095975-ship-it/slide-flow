@@ -14,6 +14,7 @@ Output mode 是 PPT 任务的第一个硬分叉。它决定最终文件、生产
 默认候选：
 
 - `Presentations`（Spaces/PowerPoint/Google Slides）
+- `academic-ppt-master`（论文转学术 deck）
 - `slide-maker`
 - `ppt-master`
 - `pptx`
@@ -22,7 +23,8 @@ Output mode 是 PPT 任务的第一个硬分叉。它决定最终文件、生产
 选择规则：
 
 - 目标是 Spaces、Google Slides 或官方 PowerPoint 文件读写：优先 `Presentations`；
-- 需要从零生成原生 PPTX：`slide-maker` 或 `ppt-master` 二选一；
+- 需要从论文生成学术 PPTX：`academic-ppt-master`；
+- 需要从零生成非学术原生 PPTX：`slide-maker` 或 `ppt-master` 二选一；
 - 只做已有 PPTX 编辑/修复：`Presentations`、`hands-on-deck` 或 `pptx` 三选一；
 - 不能把图片型页面当作可编辑 PPTX。
 

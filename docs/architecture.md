@@ -53,6 +53,19 @@ orchestration
 
 Gate A-G 覆盖受众、故事、内容、视觉、版式、文件、可编辑性和人工确认。
 
+## 6.2 Fallback layer
+
+```text
+PPT primary skill
+-> Gate failure
+-> select one research fallback
+-> produce one repaired artifact
+-> return to SlideFlow
+-> rerun affected gate
+```
+
+科研 fallback 不重新定义 deck，不另起一套页面生产。它只补 story、evidence、visual asset、writing 或 editability。
+
 ## 6.1 插件感知
 
 SlideFlow 同时扫描本地 skill 和可选插件缓存：

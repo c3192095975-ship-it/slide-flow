@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.0
+
+- Added visual_asset capability for frameworks, mechanisms, TOC, and vector icons.
+- Added scoped research-skill fallback by quality gate.
+- Added paper_to_deck workflow and academic-ppt-master candidate.
+- Added SVG-first visual asset preparation and editability verification.
+- Added Gate H for fallback provenance and visual asset fidelity.
+- Added asset manifest and fallback log schemas.
+- Added additional GitHub figure/deck repositories with license boundaries.
+- Improved capability discovery with visual_asset and PPT auxiliary classification.
+
 ## 1.1.0
 
 - Added official `Presentations` as a primary presentation capability.

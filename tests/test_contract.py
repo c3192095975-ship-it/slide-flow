@@ -18,6 +18,10 @@ class SlideFlowContractTests(unittest.TestCase):
         self.assertIn("Presentations", text)
         self.assertIn("template-creator", text)
         self.assertIn("univer-cli", text)
+        self.assertIn("visual_asset", text)
+        self.assertIn("Research fallback", text)
+        self.assertIn("academic-ppt-master", text)
+        self.assertIn("Gate H", text)
 
     def test_github_ecosystem(self) -> None:
         text = (ROOT / "references" / "github-ppt-skills.md").read_text(encoding="utf-8")
@@ -26,6 +30,8 @@ class SlideFlowContractTests(unittest.TestCase):
         self.assertIn("AGPL", text)
         self.assertIn("reference only", text)
         self.assertIn("Official/plugin skills found locally", text)
+        self.assertIn("M1n-n9/academic-ppt-master", text)
+        self.assertIn("c-narcissus/paper-framework-figure-studio-pro", text)
 
     def test_handoff_schema(self) -> None:
         text = (ROOT / "references" / "handoff-schemas.md").read_text(encoding="utf-8")
