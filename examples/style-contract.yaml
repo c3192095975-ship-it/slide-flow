@@ -1,0 +1,22 @@
+slide_size: 16:9
+margins:
+  left: 0.6in
+  right: 0.6in
+  top: 0.45in
+  bottom: 0.45in
+palette:
+  background: "#FFFFFF"
+  text: "#111111"
+  accent: "#2F6BFF"
+typography:
+  title: "Source Han Sans / 32pt / 700"
+  body: "Source Han Sans / 18pt / 400"
+title:
+  position: "top-left"
+body:
+  line_spacing: 1.25
+source_line:
+  font: "10pt"
+  color: "#666666"
+footer:
+  page_number: true
