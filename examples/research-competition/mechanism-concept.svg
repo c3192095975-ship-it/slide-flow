@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="360" viewBox="0 0 960 360">
+  <g id="background">
+    <rect x="0" y="0" width="960" height="360" fill="#ffffff"/>
+  </g>
+  <g id="nodes">
+    <rect x="60" y="130" width="220" height="90" rx="10" fill="#e8f0ff" stroke="#2f6bff"/>
+    <rect x="370" y="130" width="220" height="90" rx="10" fill="#eef8f0" stroke="#29945a"/>
+    <rect x="680" y="130" width="220" height="90" rx="10" fill="#fff4df" stroke="#c47b00"/>
+  </g>
+  <g id="connectors" fill="none" stroke="#333333" stroke-width="3">
+    <line x1="280" y1="175" x2="370" y2="175"/>
+    <polygon points="370,175 356,167 356,183" fill="#333333" stroke="none"/>
+    <line x1="590" y1="175" x2="680" y2="175"/>
+    <polygon points="680,175 666,167 666,183" fill="#333333" stroke="none"/>
+  </g>
+  <g id="labels" font-family="Arial, sans-serif" font-size="20" fill="#111111">
+    <text x="90" y="180">Input / trigger</text>
+    <text x="405" y="180">Mechanism</text>
+    <text x="720" y="180">Outcome</text>
+  </g>
+</svg>

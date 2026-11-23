@@ -1,6 +1,6 @@
 interface:
   display_name: "Slide Flow"
-  short_description: "Orchestrate presentation skills by output mode"
-  default_prompt: "Use $slide-flow to select an output mode, deck profile, and quality tier, then route story, content, visual, production, render QA, accessibility, and delivery to one primary skill per stage."
+  short_description: "Orchestrate PPT skills, evidence, visuals, and QA"
+  default_prompt: "Use $slide-flow to select the output mode and profile, decompose the deck into micro-tasks, route one primary skill per task, build evidence and VisualSpecs, validate scientific SVG/PDF artifacts, and assemble the final deck with render and delivery QA."
 policy:
   allow_implicit_invocation: true

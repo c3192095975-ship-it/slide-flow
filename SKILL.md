@@ -1,12 +1,12 @@
 ---
 name: slide-flow
-description: Orchestrate presentation and slide-deck production without conflicting PPT skills. Use for creating, editing, converting, reviewing, or exporting decks, slides, PPT/PPTX, PowerPoint, Google Slides, HTML slides, image-based slides, or presentation narratives. Triage first; select output mode, deck profile, quality tier, and source mode; then build story, content, visual direction, production, render QA, accessibility, and delivery with one primary skill per stage. Prefer the official `Presentations` skill for Spaces/PowerPoint/Google Slides when available, `template-creator` for reusable templates, and `documents`/`pdf` only as verification or delivery support. Support scoped research-skill fallback, research-competition profiles, scientific visual intelligence, evidence registries, PDF submission QA, design references, and benchmark-ready delivery. Do not use for ordinary document writing or isolated image generation without a slide/deck context.
+description: Orchestrate presentation and slide-deck production without conflicting PPT skills. Use for creating, editing, converting, reviewing, or exporting decks, slides, PPT/PPTX, PowerPoint, Google Slides, HTML slides, image-based slides, or presentation narratives. Triage first; select output mode, deck profile, quality tier, and source mode; then build story, content, visual direction, production, render QA, accessibility, and delivery with one primary skill per stage. Prefer the official `Presentations` skill for Spaces/PowerPoint/Google Slides when available, `template-creator` for reusable templates, and `documents`/`pdf` only as verification or delivery support. Support scoped research-skill fallback, research-competition profiles, scientific visual intelligence, scientific SVG assets, evidence registries, PDF submission QA, design references, and micro-task skill specialization. Do not use for ordinary document writing or isolated image generation without a slide/deck context.
 metadata:
-  version: "1.3.0"
+  version: "1.4.0"
   short-description: Orchestrate PPT skills by output mode and stage
 ---
 
-# Slide Flow v1.3
+# Slide Flow v1.4
 
 本 skill 是演示文稿任务的唯一编排入口。它不替代具体 PPT 制作 skill，而负责决定：输出形态、演示类型、质量标准、当前阶段、唯一主技能和渲染验收。
 
@@ -39,6 +39,10 @@ metadata:
 25. PDF 交付必须检查页数、页面尺寸、渲染、文本/图片完整性和源文件一致性；工具缺失时标记 `not_checked`。
 26. 设计参考只提取结构和表达规律，不复制受版权保护的整页作品。
 27. Benchmark、Judge Simulation 和内部评分只作为辅助，不得冒充官方成绩或评委结论。
+28. 科研 SVG 必须来自论文/数据/用户材料或明确标记的参考图；不得把位图嵌入冒充矢量，不得用单一不可拆路径冒充可编辑对象。
+29. 科研图生成后必须检查机制方向、标签、单位、箭头语义、对象分组、文本可编辑性和 PPT 转换结果。
+30. 每个微任务只能有一个主技能，最多两个辅助技能，总 skill 数不超过 3；微任务输出回到总装配器，不直接重写整套 deck。
+31. 设计参考和参考图只用于提取布局与表达规律；未获授权不得复制受版权保护的整张科研图或作品。
 
 以下任务不进入 Slide Flow：普通文档写作、普通图片生成、单个图标或单张配图，没有幻灯片或演示语境的普通视觉任务。
 
@@ -232,6 +236,62 @@ python3 scripts/check_slide_plan.py --plan slide-plan.json --evidence evidence-r
 
 科研竞赛、学术汇报和 PDF 交付的具体规范见对应 references。
 
+## 7.3 Micro-task ownership
+
+PPT skill 不需要负责整份 deck。先将工作拆成微任务：
+
+```yaml
+micro_task_id: M03
+slide_id: S05
+task_type: mechanism_figure
+primary_skill: academic-figure-skill
+auxiliary_skills:
+  - scientific-visualization
+output_contract:
+  format: svg
+  editable: true
+return_to: slide-flow
+```
+
+规则：
+
+- 一个微任务一个主技能；
+- 最多两个辅助技能，总 skill 数不超过 3；
+- 微任务只交付中间工件；
+- 总装配器负责页面风格、布局和最终合并；
+- 同一页面对象不能由两个微任务同时写；
+- 失败时只回到对应微任务修复。
+
+强项与禁区见 `references/skill-strength-matrix.md`。
+
+## 7.4 Scientific SVG assets
+
+科研视觉资产统一走：
+
+```text
+paper/data/reference
+-> VisualSpec
+-> SVG structure
+-> deterministic checks
+-> PPT import
+-> convert to shapes (when supported)
+-> editability verification
+-> slide placement
+```
+
+要求：
+
+- 机制/概念图优先 SVG；
+- 真实数据图优先真实数据生成；
+- 不嵌入原始位图冒充矢量；
+- 不只生成一条不可拆路径；
+- 标签、箭头和方向必须与论文/数据一致；
+- 概念图标注 conceptual；
+- 参考图只提取设计规律，不复制受保护作品；
+- 输出后运行 `scripts/check_svg.py`。
+
+详细协议见 `references/scientific-svg-generation.md`。
+
 ## 8.1 Official and plugin skills
 
 优先顺序：
@@ -373,6 +433,9 @@ fallback 规则：
 - 真实数据图不能用图片模型伪造；
 - SVG 转 PPT 后必须实际验证文字和对象可编辑；
 - 不允许科研 fallback 另起一套 deck 叙事。
+- 科研 SVG 不使用 `<image>` 或 base64 位图冒充矢量；
+- SVG 至少包含可编辑文本和基本分组；
+- 参考图复刻不得直接嵌入原图或复制受保护作品。
 
 
 - 演讲者读完整套 deck；
@@ -449,7 +512,10 @@ SlideFlow gate：pass / fail / pending
 - `references/design-reference-library.md`：设计参考元数据和版权边界。
 - `references/benchmark-and-judge.md`：基准任务、评分 rubric 和评委模拟边界。
 - `references/capability-verification.md`：声明能力与验证能力的区分。
+- `references/scientific-svg-generation.md`：论文/参考图 → 可编辑 SVG 的生成和验证协议。
+- `references/skill-strength-matrix.md`：PPT skill 的 best_for / not_for 和微任务分工。
 - `scripts/check_slide_plan.py`：检查 SlidePlan、证据引用和 VisualSpec。
 - `scripts/check_pdf.py`：检查 PDF 结构、页面和渲染。
+- `scripts/check_svg.py`：检查 SVG 是否为矢量、是否嵌入位图、文本/分组和基础可编辑性。
 
 只读取当前任务需要的参考文件。

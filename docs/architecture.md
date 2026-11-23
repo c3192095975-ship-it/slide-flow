@@ -53,6 +53,17 @@ orchestration
 
 Gate A-G 覆盖受众、故事、内容、视觉、版式、文件、可编辑性和人工确认。
 
+## 6.4 v1.4 scientific SVG layer
+
+```text
+VisualSpec -> SVG structure -> structural QA
+-> PPT import -> shape conversion -> editability QA
+```
+
+SVG 是中间可编辑资产，不是最终交付证明。最终仍要检查 PPTX 对象、PDF 渲染和科学含义。
+
+Micro-task ownership allows different skills to own paper extraction, storytelling, figure design, data charting, layout and assembly without letting multiple skills edit the same page.
+
 ## 6.3 v1.3 intelligence modules
 
 ```text

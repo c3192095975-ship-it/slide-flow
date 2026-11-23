@@ -8,7 +8,15 @@
       "source_data_or_asset": "conceptual diagram from project brief",
       "output_format": "svg",
       "editability_requirement": "editable_in_ppt",
-      "caption_or_source_note": "Conceptual diagram; not measured data."
+      "caption_or_source_note": "Conceptual diagram; not measured data.",
+      "micro_task_id": "M-V01",
+      "source_type": "concept",
+      "source_location": "examples/research-competition/README.md",
+      "vector_required": true,
+      "raster_embedded": false,
+      "editable_text_required": true,
+      "ppt_conversion_required": true,
+      "validation_status": "pending"
     },
     {
       "visual_id": "V02",
@@ -18,7 +26,15 @@
       "source_data_or_asset": "conceptual method diagram",
       "output_format": "svg",
       "editability_requirement": "editable_in_ppt",
-      "caption_or_source_note": "Conceptual diagram based on user-provided method."
+      "caption_or_source_note": "Conceptual diagram based on user-provided method.",
+      "micro_task_id": "M-V02",
+      "source_type": "concept",
+      "source_location": "examples/research-competition/README.md",
+      "vector_required": true,
+      "raster_embedded": false,
+      "editable_text_required": true,
+      "ppt_conversion_required": true,
+      "validation_status": "pending"
     },
     {
       "visual_id": "V03",
@@ -28,7 +44,15 @@
       "source_data_or_asset": "user_provided_results.csv",
       "output_format": "native_chart_or_svg",
       "editability_requirement": "editable_in_ppt",
-      "caption_or_source_note": "Values must be inserted from the supplied result table."
+      "caption_or_source_note": "Values must be inserted from the supplied result table.",
+      "micro_task_id": "M-V03",
+      "source_type": "data",
+      "source_location": "examples/research-competition/README.md",
+      "vector_required": true,
+      "raster_embedded": false,
+      "editable_text_required": true,
+      "ppt_conversion_required": true,
+      "validation_status": "pending"
     }
   ]
 }

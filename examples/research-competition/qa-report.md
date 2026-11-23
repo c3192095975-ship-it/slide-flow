@@ -20,6 +20,26 @@ errors: 0
 warnings: 0
 ```
 
+## SVG structural validation
+
+Command:
+
+```bash
+python3 scripts/check_svg.py   --svg examples/research-competition/mechanism-concept.svg
+```
+
+Result:
+
+```text
+status: pass
+image elements: 0
+text elements: 3
+groups: 4
+paths: 0
+errors: 0
+warnings: 0
+```
+
 ## PDF structural validation
 
 Command:

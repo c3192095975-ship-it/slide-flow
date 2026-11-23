@@ -11,6 +11,7 @@ source_mode: topic | document | paper | template | url | existing_pptx | screens
 phase: brief | story | content | visual | exemplar | production | render | visual_qa | accessibility | delivery
 primary_skill:
 auxiliary_skill:
+micro_task_id:
 visual_asset_owner:
 fallback_owner:
 fallback_scope:
@@ -98,4 +99,32 @@ return_to:
 invalidated_artifacts: []
 checks_to_rerun: []
 result: pass | fail | pending
+```
+
+## Micro-task assignment
+
+```yaml
+micro_task_id:
+slide_id:
+task_type:
+primary_skill:
+auxiliary_skills: []
+output_contract:
+  format: svg | png | native_shape | pptx
+  editable: true
+return_to: slide-flow
+```
+
+## SVG asset record
+
+```yaml
+visual_id:
+source_type: paper | data | user_asset | reference | concept
+source_location:
+conceptual: true
+vector_required: true
+raster_embedded: false
+editable_text_required: true
+ppt_conversion_required: true
+validation_status: pending | pass | fail
 ```

@@ -140,6 +140,25 @@ python3 scripts/check_pdf.py --pdf final.pdf
 
 `authoring_format` 和 `delivery_format` 必须分开。PPTX 生成成功不等于 PDF 交付通过。
 
+## 5.6 科研 SVG 与微任务分工
+
+科研机制图/框架图建议走：
+
+```text
+source -> VisualSpec -> SVG -> check_svg.py
+-> PowerPoint import -> convert to shapes -> editability check
+```
+
+运行：
+
+```bash
+python3 scripts/check_svg.py   --svg asset.svg   --spec visual-spec.json
+```
+
+SVG 不应嵌入 `<image>` 或 base64 位图来冒充矢量。概念图必须标记 conceptual；数据图必须有真实数据源。
+
+每个微任务最多一个主 skill 和两个辅助 skill。页面生产器负责装配，科研绘图 skill 只负责视觉资产。
+
 ## 6. 质量门
 
 - A：brief 和受众；

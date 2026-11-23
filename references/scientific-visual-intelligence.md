@@ -54,3 +54,13 @@ For each slide:
   "validation_checks": ["labels match text", "arrows match method"]
 }
 ```
+
+## SVG and reference-image protocol
+
+- Prefer SVG for mechanism, framework and conceptual diagrams when editability matters.
+- Do not embed the reference PNG/JPG inside the SVG or claim a raster image is vector.
+- Do not collapse the entire figure into one non-editable path.
+- Keep labels as `<text>` and group connectors/nodes/labels separately.
+- Verify PowerPoint “Convert to Shape” and inspect text/editability after import.
+- Reference images may inform composition, hierarchy, spacing, palette and arrow semantics; they may not be copied without permission.
+- Run `scripts/check_svg.py` before placing the asset into a slide.

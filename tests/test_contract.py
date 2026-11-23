@@ -22,6 +22,8 @@ class SlideFlowContractTests(unittest.TestCase):
         self.assertIn("Research fallback", text)
         self.assertIn("academic-ppt-master", text)
         self.assertIn("Gate H", text)
+        self.assertIn("Scientific SVG", text)
+        self.assertIn("micro-task", text)
 
     def test_github_ecosystem(self) -> None:
         text = (ROOT / "references" / "github-ppt-skills.md").read_text(encoding="utf-8")
@@ -53,6 +55,9 @@ class SlideFlowContractTests(unittest.TestCase):
         self.assertTrue((ROOT / "scripts" / "check_pdf.py").is_file())
         self.assertIn("research_competition", (ROOT / "references" / "deck-profiles.md").read_text(encoding="utf-8"))
         self.assertIn("Gate J", (ROOT / "references" / "quality-gates.md").read_text(encoding="utf-8"))
+        self.assertTrue((ROOT / "references" / "scientific-svg-generation.md").is_file())
+        self.assertTrue((ROOT / "references" / "skill-strength-matrix.md").is_file())
+        self.assertTrue((ROOT / "scripts" / "check_svg.py").is_file())
 
 
 if __name__ == "__main__":

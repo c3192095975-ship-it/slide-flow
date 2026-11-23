@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.4.0
+
+- Added scientific SVG generation protocol.
+- Added VisualSpec vector/raster/editability/PPT conversion fields.
+- Added `check_svg.py` for SVG structural and editability risks.
+- Added micro-task ownership and skill strength matrix.
+- Added SVG example fixture.
+- Added reference-image replication and copyright boundaries.
+- Preserved v1.3 competition, evidence, PDF QA, and fallback paths.
+
 ## 1.3.0
 
 - Added Research Competition profile and non-official rubric mapping.

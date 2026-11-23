@@ -1,8 +1,17 @@
 # Slide Flow
 
-当前版本：`1.3.0`
+当前版本：`1.4.0`
 
 Slide Flow 是一个独立的 PPT/演示文稿编排 skill。它不替代具体 PPT 制作工具，而是先选择输出形态，再按故事线、内容、视觉、生产、渲染、QA 和交付阶段选择唯一主技能，避免多个 PPT skill 互相抢任务。
+
+## v1.4 更新重点
+
+- 新增 Scientific SVG Generation：论文/参考图 → VisualSpec → 可编辑 SVG → PPT 对象。
+- 新增 `check_svg.py`：检查 SVG 根节点、嵌入位图、文本、分组和单一路径。
+- 新增 micro-task ownership：每个微任务最多一个主 skill + 两个辅助 skill。
+- 新增 skill strength matrix：明确各 PPT skill 的 best_for 与 not_for。
+- 新增 VisualSpec 的 vector/raster/editability/PPT conversion 字段。
+- 强化参考图复刻边界：不得嵌入原图、位图冒充矢量或复制受保护作品。
 
 ## v1.3 更新重点
 
@@ -98,6 +107,35 @@ python3 scripts/discover_slide_skills.py
 - render_qa
 - accessibility
 - delivery
+
+## Scientific SVG generation
+
+科研图和机制图使用：
+
+```text
+paper/data/reference
+-> VisualSpec
+-> SVG
+-> check_svg.py
+-> PowerPoint import
+-> convert to shapes (when supported)
+-> editability verification
+-> slide placement
+```
+
+要求：
+
+- 只用论文明确出现或可直接推导的信息；
+- 箭头表达真实机制方向；
+- 标签、单位和对象可追溯；
+- 不把位图嵌入 SVG 冒充矢量；
+- 不把所有内容合并成单一不可拆路径；
+- 参考图只提取布局和设计规律；
+- 生成后仍需人工核对科学逻辑。
+
+## 微任务分工
+
+每个微任务最多一个主 skill 和两个辅助 skill。总装配器负责统一风格、页面结构和最终导出。
 
 ## Research Competition
 
