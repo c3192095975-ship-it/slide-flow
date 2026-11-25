@@ -1,24 +1,11 @@
 # Capability Verification
 
-## Declared vs verified
+## Capability states
+- `declared`: metadata/documentation claims the capability.
+- `discovered`: capability is currently available in this environment.
+- `smoke_tested`: a minimal representative task completed successfully.
+- `verified`: input/output contract, error behavior, compatibility and a representative artifact were checked.
 
-- `declared`: skill metadata says it supports a capability.
-- `smoke_tested`: a minimal command/import/output path was actually run.
-- `verified`: expected input/output contract and failure behavior were exercised.
+Prefer the highest verified capability that fits task and scope. If only declared/discovered, treat it as unverified and run a minimal safe test when practical. Do not claim verification based only on name, description, repository popularity or installation.
 
-Discovery alone never proves a skill is fully operational.
-
-## Smoke tests
-
-For critical skills, prefer:
-
-- command exists;
-- help/version runs;
-- minimal fixture produces expected artifact;
-- missing dependency fails visibly;
-- generated file opens;
-- output can be consumed by the next stage.
-
-## Selection
-
-Prefer verified skills when stakes are high. If unverified, state uncertainty and use a fallback or request user input.
+Record `skill_id`, `capability_slot`, `state`, `test_case`, `tested_at`, `environment`, `result`, `known_limits`, and `artifact_reference`. Verification is environment-specific and may expire after major version, dependency or platform changes.

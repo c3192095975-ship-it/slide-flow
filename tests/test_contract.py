@@ -40,6 +40,14 @@ class SlideFlowContractTests(unittest.TestCase):
         for field in ("output_mode", "deck_profile", "quality_tier", "style_contract", "render"):
             self.assertIn(field, text)
 
+    def test_v20_modules(self) -> None:
+        for name in ("task-intelligence.md", "design-intelligence.md", "competition-excellence-mode.md", "visual-qa-protocol.md"):
+            self.assertTrue((ROOT / "references" / name).is_file(), name)
+        self.assertTrue((ROOT / "scripts" / "check_visual_plan.py").is_file())
+        skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("Gate K", skill)
+        self.assertIn("scope lock", skill.lower())
+
     def test_v13_modules(self) -> None:
         for name in (
             "research-competition-profile.md",

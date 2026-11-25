@@ -8,33 +8,46 @@
       "title": "Low-power sensing needs smarter scheduling",
       "takeaway": "The proposed schedule reduces idle listening while preserving monitoring coverage.",
       "claim": "The scheduling policy is the project's main intervention.",
-      "evidence_ids": ["E01"],
+      "evidence_ids": [
+        "E01"
+      ],
       "visual_type": "concept",
       "visual_spec_id": "V01",
       "conceptual": true,
-      "speaker_notes": "Open with the monitoring problem and the cost of idle listening."
+      "speaker_notes": "Open with the monitoring problem and the cost of idle listening.",
+      "composition": "annotated_concept_scene",
+      "visual_anchor": "idle-listening cost"
     },
     {
       "slide_id": "S02",
       "title": "The method combines duty cycling with event priority",
       "takeaway": "Priority-aware duty cycling is the proposed method.",
       "claim": "The method has two components: duty cycling and event priority.",
-      "evidence_ids": ["E01", "E02"],
+      "evidence_ids": [
+        "E01",
+        "E02"
+      ],
       "visual_type": "mechanism",
       "visual_spec_id": "V02",
       "conceptual": true,
-      "speaker_notes": "Explain the two components and how they interact."
+      "speaker_notes": "Explain the two components and how they interact.",
+      "composition": "mechanism_diagram",
+      "visual_anchor": "priority-aware feedback loop"
     },
     {
       "slide_id": "S03",
       "title": "We evaluate coverage and energy together",
       "takeaway": "The evaluation must report both monitoring coverage and energy cost.",
       "claim": "The study evaluates coverage and energy as joint outcomes.",
-      "evidence_ids": ["E03"],
+      "evidence_ids": [
+        "E03"
+      ],
       "visual_type": "data_chart",
       "visual_spec_id": "V03",
       "data_source": "user_provided_results",
-      "speaker_notes": "Do not invent values; use the supplied result table."
+      "speaker_notes": "Do not invent values; use the supplied result table.",
+      "composition": "paired_data_charts",
+      "visual_anchor": "coverage and energy comparison"
     }
   ]
 }

@@ -1,4 +1,4 @@
-# Slide Flow v1.3 Implementation Design
+# Slide Flow v2.0 Implementation Design
 
 ## 1. Target architecture
 

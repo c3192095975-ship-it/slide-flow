@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.0.0
+
+- Added adaptive task classification, complexity tiers and scope locking for existing decks.
+- Added design intelligence, semantic layout selection and scientific figure grammar.
+- Added Competition Excellence Mode with evidence and judge-readiness checks.
+- Added two-layer visual QA protocol and severity-based repair loop.
+- Expanded benchmark cases and regression policy.
+- Clarified capability verification states: declared, discovered, smoke_tested, verified.
+- Added `check_visual_plan.py` and automated tests for VisualSpec integrity.
+- Preserved v1.4 production, SVG, PDF, evidence and capability-routing modules.
+
+
 ## 1.4.0
 
 - Added scientific SVG generation protocol.

@@ -1,8 +1,19 @@
 # Slide Flow
 
-当前版本：`1.4.0`
+当前版本：`2.0.0`
 
 Slide Flow 是一个独立的 PPT/演示文稿编排 skill。它不替代具体 PPT 制作工具，而是先选择输出形态，再按故事线、内容、视觉、生产、渲染、QA 和交付阶段选择唯一主技能，避免多个 PPT skill 互相抢任务。
+
+## v2.0 更新重点
+
+- 新增 Task Intelligence：create/redesign/edit_scoped/polish/convert/review/recover 任务路由与复杂度分级。
+- 新增 scope lock：指定页面外的内容默认不可修改，支持小范围修改和只读审查。
+- 新增 Design Intelligence：按信息语义选择构图，避免全套页面卡片化和方框箭头化。
+- 新增 Competition Excellence Mode：评审理解、创新点、证据、基线、成熟度和风险检查。
+- 新增双层 Visual QA：确定性检查与人工/视觉检查分离，明确 blocker/major/minor/note。
+- 新增能力验证状态：declared / discovered / smoke_tested / verified。
+- 新增 `check_visual_plan.py`：校验 VisualSpec、数据图来源、编辑性冲突和布局重复风险。
+- 扩展 Benchmark：增加局部两页重构、模板约束等任务，并加入回归策略。
 
 ## v1.4 更新重点
 

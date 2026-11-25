@@ -2,11 +2,11 @@
 name: slide-flow
 description: Orchestrate presentation and slide-deck production without conflicting PPT skills. Use for creating, editing, converting, reviewing, or exporting decks, slides, PPT/PPTX, PowerPoint, Google Slides, HTML slides, image-based slides, or presentation narratives. Triage first; select output mode, deck profile, quality tier, and source mode; then build story, content, visual direction, production, render QA, accessibility, and delivery with one primary skill per stage. Prefer the official `Presentations` skill for Spaces/PowerPoint/Google Slides when available, `template-creator` for reusable templates, and `documents`/`pdf` only as verification or delivery support. Support scoped research-skill fallback, research-competition profiles, scientific visual intelligence, scientific SVG assets, evidence registries, PDF submission QA, design references, and micro-task skill specialization. Do not use for ordinary document writing or isolated image generation without a slide/deck context.
 metadata:
-  version: "1.4.0"
+  version: "2.0.0"
   short-description: Orchestrate PPT skills by output mode and stage
 ---
 
-# Slide Flow v1.4
+# Slide Flow v2.0
 
 本 skill 是演示文稿任务的唯一编排入口。它不替代具体 PPT 制作 skill，而负责决定：输出形态、演示类型、质量标准、当前阶段、唯一主技能和渲染验收。
 
@@ -46,10 +46,23 @@ metadata:
 
 以下任务不进入 Slide Flow：普通文档写作、普通图片生成、单个图标或单张配图，没有幻灯片或演示语境的普通视觉任务。
 
+## 1.1 v2.0 核心升级规则
+
+- 先读取 `references/task-intelligence.md`，把任务分类为 create / redesign / edit_scoped / polish / convert / review / recover。
+- 对已有 deck 建立 scope lock；用户指定修改页面时，未指定页面视为 immutable，不得顺手重做。
+- 按任务复杂度选择 micro / small / standard / large；只运行必要阶段，跳过阶段必须记录理由。
+- 设计时读取 `references/design-intelligence.md`：视觉一致不等于布局重复；每页记录 visual anchor、层级、composition、density 和 source/caption。
+- 科研图按语义选择视觉语法，不能默认把所有内容画成方框和箭头；真实数据图必须有数据来源，概念图必须明确标注。
+- 科研竞赛任务启用 `references/competition-excellence-mode.md`；没有官方规则时，rubric 映射必须标为 generic_not_official。
+- 生产后的 QA 分为 deterministic 与 human/vision 两层；不得把结构检查通过描述成视觉优秀或科研准确。
+- 能力状态区分 declared / discovered / smoke_tested / verified；按 `references/capability-verification.md` 记录。
+- VisualSpec 运行 `scripts/check_visual_plan.py`；布局重复仅作为风险提示，不机械要求每页不同。
+
 ## 2. 启动协议
 
 1. **DETECT**：判断是否为真实 PPT/演示任务。
-2. **TRIAGE**：选择 `BYPASS`、`LIGHT` 或 `FULL`。
+2. **CLASSIFY**：确定任务类别、范围锁和复杂度。
+3. **TRIAGE**：选择 `BYPASS`、`LIGHT` 或 `FULL`。
 3. **DISCOVER**：FULL 模式发现当前已安装的 PPT 能力；LIGHT 只确认一个主能力。
 4. **OUTPUT MODE**：选择最终输出形态。
 5. **DECK PROFILE**：选择学术、答辩、路演、咨询、培训、产品发布或社交 deck。
@@ -63,7 +76,7 @@ metadata:
 
 开始时输出：
 
-`SlideFlow：模式=…；输出=…；profile=…；tier=…；阶段=…；主技能=…；辅助技能=…`
+`SlideFlow：task=…；scope=…；模式=…；输出=…；profile=…；tier=…；阶段=…；主技能=…；辅助技能=…`
 
 ## 3. 任务分级
 
@@ -454,6 +467,20 @@ fallback 规则：
 - research competition 有 rubric-to-slide mapping 或明确缺少官方规则；
 - VisualSpec 有 purpose、labels/units、output format 和 editability。
 
+### Gate K: Design intelligence
+- 每页有明确 visual anchor、层级和 composition；
+- 布局选择符合信息任务，不以模板重复替代设计判断；
+- 科研图的视觉语法与研究内容匹配；
+- 参考作品只提取设计规律，来源/授权信息可追溯；
+- 低审美评分必须对应具体诊断和修复动作。
+
+### Gate L: Task scope and regression
+- 任务类别和修改范围已记录；
+- 未授权页面/元素保持不变；
+- 复用、跳过和执行的阶段均有状态记录；
+- 重大修改后重新渲染并复测；
+- 不允许新 blocker 或科研准确性回归被平均分掩盖。
+
 ### Gate J: PDF delivery QA
 
 - authoring_format 与 delivery_format 明确；
@@ -512,10 +539,15 @@ SlideFlow gate：pass / fail / pending
 - `references/design-reference-library.md`：设计参考元数据和版权边界。
 - `references/benchmark-and-judge.md`：基准任务、评分 rubric 和评委模拟边界。
 - `references/capability-verification.md`：声明能力与验证能力的区分。
+- `references/task-intelligence.md`：任务分类、范围锁、复杂度和自适应路由。
+- `references/design-intelligence.md`：布局决策、科研视觉语法和审美评价。
+- `references/competition-excellence-mode.md`：竞赛评审视角和证据风险检查。
+- `references/visual-qa-protocol.md`：渲染、双层 QA、严重度和修复闭环。
 - `references/scientific-svg-generation.md`：论文/参考图 → 可编辑 SVG 的生成和验证协议。
 - `references/skill-strength-matrix.md`：PPT skill 的 best_for / not_for 和微任务分工。
 - `scripts/check_slide_plan.py`：检查 SlidePlan、证据引用和 VisualSpec。
 - `scripts/check_pdf.py`：检查 PDF 结构、页面和渲染。
 - `scripts/check_svg.py`：检查 SVG 是否为矢量、是否嵌入位图、文本/分组和基础可编辑性。
+- `scripts/check_visual_plan.py`：检查 VisualSpec 完整性、数据图来源和布局重复风险。
 
 只读取当前任务需要的参考文件。

@@ -193,3 +193,21 @@ python3 scripts/discover_slide_skills.py
 - 不把图片型页面称为可编辑 PPTX；
 - 不自动安装或复制许可证不明的第三方 skill；
 - 人类演讲者确认最终内容。
+
+## Slide Flow v2.0：自适应任务与设计质量
+
+开始任何现有 PPT 修改前，先分类任务（create / redesign / edit_scoped / polish / convert / review / recover），并锁定允许修改的页面和元素。用户指定只修改部分页面时，其余页面默认不可修改。
+
+按任务复杂度选择 micro / small / standard / large。只有在已有工件仍然有效且通过对应检查时，才跳过阶段，并记录跳过原因。
+
+每页设计记录 `visual_anchor`、`composition` 和信息层级。科研图根据科学语义选择机制、实验、算法、系统、结果或比较等视觉语法，避免把所有内容都做成相同的方框和箭头。
+
+科研竞赛任务启用 Competition Excellence Mode。没有官方竞赛规则时，所有评分映射都必须标为通用参考，不得称为官方评分。
+
+完成制作后分别执行确定性检查和人工/视觉检查。可运行：
+
+```bash
+python3 scripts/check_visual_plan.py --specs visual-specs.json --plan slide-plan.json
+```
+
+检查通过仅代表 VisualSpec 结构和已编码规则通过，不代表科研内容已被验证，也不代表页面审美达到优秀水平。

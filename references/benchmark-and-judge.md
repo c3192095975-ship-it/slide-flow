@@ -1,45 +1,18 @@
 # Benchmark and Judge Simulation
 
-## Benchmark tasks
+## Benchmark task families
+1. paper-to-academic-talk; 2. research-competition deck; 3. experiment-results briefing; 4. technical pitch; 5. existing PPT redesign; 6. scoped two-slide redesign; 7. PPTX-to-PDF delivery; 8. image-PPT-to-editable-PPTX; 9. data-driven chart slides; 10. template-constrained deck.
 
-At least eight task families:
+## Benchmark case contract
+Each case includes stable `case_id` and version; source inputs and permitted tools; task class/scope/expected format; locked content/assets and constraints; required evidence/visual deliverables; deterministic assertions; human rubric/severity thresholds; known limitations.
 
-1. paper-to-academic-talk;
-2. research-competition deck;
-3. experiment-results briefing;
-4. technical pitch;
-5. existing PPT redesign;
-6. PPTX-to-PDF delivery;
-7. image-PPT-to-editable-PPTX;
-8. data-driven chart slides.
+## Evaluation
+Score 1–5 for narrative logic, scientific accuracy, evidence completeness, visual appropriateness, hierarchy/consistency, readability, audience fit, editability and delivery. Declare profile-specific weights before evaluation.
 
-Each task should include input, expected output features, content checks and a human rubric.
+Track pass rate by task family, blocker/major count, unsupported-claim count, source-output fidelity, editability, visual rubric distribution, execution cost and repair count.
 
-## Human rubric
-
-Score 1-5:
-
-- narrative logic;
-- scientific accuracy;
-- evidence completeness;
-- visual appropriateness;
-- hierarchy and consistency;
-- readability;
-- audience fit;
-- delivery quality.
-
-Weights may vary by profile; do not present them as official competition scoring.
+## Regression policy
+Run fixed cases after changes to routing, prompts, scripts or templates. Compare with the previous version. A higher average score cannot hide a new blocker or scientific-accuracy regression.
 
 ## Judge simulation
-
-A judge simulation may ask:
-
-- What is the central contribution?
-- Is the innovation specific and comparable?
-- Does the evidence actually validate the claim?
-- Are baselines/controls visible?
-- Is maturity overstated?
-- Can a non-specialist judge understand the key point?
-- What would a skeptical judge challenge?
-
-The simulation is advisory. It cannot predict actual scores or replace human judges.
+Challenge contribution specificity, evidence strength, baselines/controls, reproducibility, prototype maturity, limitations and non-specialist comprehension. Advisory only; cannot predict actual scores or replace official judges.
